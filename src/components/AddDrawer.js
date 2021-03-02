@@ -6,7 +6,6 @@ import { Drawer, Input, Form, Button, DatePicker } from 'antd';
 const AddDrawer = ({ show, handleOnClose, handleOnFinish, handleOnFinishFailed}) => {
     const initialValues = {fullName: "", birthDay: "", email: "", address: ""}
     const [form] = Form.useForm();
-
     return(
         <Drawer 
             placement="left"
