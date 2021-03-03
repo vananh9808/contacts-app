@@ -21,12 +21,10 @@ const App = () =>{
               <Router>
                 <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                 <Switch>
-                    <Route path={"/detail/:key"} children={<DetailPage />}>
-                      <DetailPage />
+                    <Route exact path={"/detail/:key"} component={DetailPage}>
                     </Route>
-                    <Router path={"/"} >
-                      <ContactManage />
-                    </Router>
+                    <Route exact path={"/"} component={ContactManage}>
+                    </Route>
                     </Switch> 
                 </div>
                 </Router>

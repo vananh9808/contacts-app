@@ -10,6 +10,7 @@ import {
   BrowserRouter as Router,
   Link
 } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 const ContactManage = ({ contacts, addContact, deleteContact, editContact}) =>{
@@ -19,6 +20,7 @@ const ContactManage = ({ contacts, addContact, deleteContact, editContact}) =>{
     const [contact, setContact] = useState({fullName: "", email: "", address: ""})
     const [mode, setMode] = useState('add')
     const [key, setEditKey] = useState()
+    const history = useHistory();
 
     const handleAddFormOnFinish = (data) => {
         addContact({
@@ -49,6 +51,7 @@ const ContactManage = ({ contacts, addContact, deleteContact, editContact}) =>{
       setEditKey()
       setShowDrawer(false)
     }
+
     console.log("values: ",contacts)
     console.log("error: ",errorInfo)
       
@@ -94,7 +97,7 @@ const ContactManage = ({ contacts, addContact, deleteContact, editContact}) =>{
             </Button>
             <Router>
             <Link to={"/detail/" + contact.key}>
-              <Button type="primary" >
+              <Button type="primary" onClick={()=>{history.push("/detail/", contact.key)}}>
                   Detail
               </Button>
             </Link>

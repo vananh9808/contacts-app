@@ -3,8 +3,9 @@ import { Fragment } from 'react';
 import {useParams} from 'react-router-dom';
 import { connect } from 'react-redux'
 import { Typography } from 'antd'
+import { useHistory } from "react-router-dom";
 const DetailPage = ({contacts}) =>{
-    
+    const history = useHistory();
     const { key } = useParams()
     const oneContact = contacts.find(
       (contact) => contact.key)
@@ -24,6 +25,9 @@ const DetailPage = ({contacts}) =>{
       </div>
       <div>
         <Typography.Paragraph>{oneContact.address || '---'}</Typography.Paragraph>
+      </div>
+      <div>
+        <Button onClick={() => history.push('/') } >Quay lại</Button>
       </div>
       </Fragment>
     )
