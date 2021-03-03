@@ -8,6 +8,14 @@ export const addContact = (contact) => {
         })
     }
 }
+export const editContact = (contact) => {
+    return (dispatch) =>{
+        dispatch({
+            type: EDIT_CONTACT,
+            payload: contact,
+        })
+    }
+}
 export const deleteContact = (key) => {
     return (dispatch) =>{
         dispatch({
@@ -16,11 +24,4 @@ export const deleteContact = (key) => {
         })
     }
 }
-export const editContact = (key) => {
-    return (dispatch) =>{
-        dispatch({
-            type: EDIT_CONTACT,
-            payload: key,
-        })
-    }
-}
+

@@ -1,27 +1,35 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Drawer, Input, Form, Button, DatePicker } from 'antd';
+import moment from 'moment';
 
-
-const AddDrawer = ({ show, handleOnClose, handleOnFinish, handleOnFinishFailed}) => {
-    const initialValues = {fullName: "", birthDay: "", email: "", address: ""}
+const EditDrawer = ({ 
+    show, 
+    handleOnClose, 
+    handleOnFinish, 
+    handleOnFinishFailed,
+    initialValues,
+    mode,
+    handleEditOnFinish
+}) => {
     const [form] = Form.useForm();
     return(
         <Drawer 
             placement="left"
             width={412}
-            title="Add Contact" 
+            title={`${mode==="edit" ? "Edit Contact" : "Add Contact" } `} 
             visible={show}
             onClose={handleOnClose} 
             maskClosable={true}
+            destroyOnClose={true}
         >
             <Form
                 form={form}
-                name="basic"
                 initialValues = {initialValues}
-                onFinish={handleOnFinish}
+                onFinish={mode==="edit" ? handleEditOnFinish : handleOnFinish }
                 onFinishFailed={handleOnFinishFailed}
                 layout="vertical"
+
                 >
                     <Form.Item
                     label="Nhập tên"
@@ -31,16 +39,17 @@ const AddDrawer = ({ show, handleOnClose, handleOnFinish, handleOnFinishFailed})
                     <Input />
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                     label="Nhập ngày sinh"
                     name="birthDay"
                     rules={[{ required: true, message: 'Vui lòng nhập ngày tháng năm sinh!' }]}
                     >
                     <DatePicker 
+                        initialValues={moment('2015/01/01', 'DD-MM-YYYY')}
                         style={{ width: '50%' }} 
-        
+                        format={'DD-MM-YYYY'}
                     />
-                    </Form.Item>
+                    </Form.Item> */}
 
                     <Form.Item
                     label="Nhập Email"
@@ -60,8 +69,12 @@ const AddDrawer = ({ show, handleOnClose, handleOnFinish, handleOnFinishFailed})
 
                     <Form.Item>
                             <Fragment>
-                                <Button type="primary" htmlType="submit" style={{marginRight: "20px"}}> Add </Button>
-                                <Button htmlType="button" onClick={() => form.resetFields()}> Reset </Button>
+                                <Button type="primary" htmlType="submit" style={{marginRight: "20px"}}> 
+                                 {mode==="edit"?"Edit":"Add"}
+                                </Button>
+                                <Button htmlType="button" onClick={() => form.resetFields()}> 
+                                Reset 
+                                </Button>
                             </Fragment>
                     </Form.Item>
             </Form>
@@ -71,11 +84,14 @@ const AddDrawer = ({ show, handleOnClose, handleOnFinish, handleOnFinishFailed})
 
 }
 
-AddDrawer.propTypes = {
+EditDrawer.propTypes = {
     show: PropTypes.bool.isRequired,
     handleOnClose: PropTypes.func.isRequired,
     handleOnFinish: PropTypes.func.isRequired,
     handleOnFinishFailed: PropTypes.func.isRequired,
+    initialValues: PropTypes.object.isRequired,
+    handleEditOnFinish: PropTypes.func.isRequired,
+    mode:PropTypes.oneOf(["add","edit"])
 };
 
-export default AddDrawer
+export default EditDrawer

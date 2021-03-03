@@ -1,12 +1,36 @@
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
-const DetailPage = () =>{
+import { Button } from 'antd';
+import { Fragment } from 'react';
+import {useParams} from 'react-router-dom';
+import { connect } from 'react-redux'
+import { Typography } from 'antd'
+const DetailPage = ({contacts}) =>{
+    
+    const { key } = useParams()
+    const oneContact = contacts.find(
+      (contact) => contact.key)
+    console.log("One Contact: ",oneContact)
+    console.log("Key: ",typeof(key),key)
     return(
-        <h1>Detail page</h1>
+      <Fragment>
+        <h1>Key: {key}</h1>
+        <div>
+        <Typography.Paragraph>{oneContact.stt || '---'}</Typography.Paragraph>
+      </div>
+      <div>
+        <Typography.Paragraph>{oneContact.fullName || '---'}</Typography.Paragraph>
+      </div>
+      <div>
+        <Typography.Paragraph>{oneContact.email || '---'}</Typography.Paragraph>
+      </div>
+      <div>
+        <Typography.Paragraph>{oneContact.address || '---'}</Typography.Paragraph>
+      </div>
+      </Fragment>
     )
 }
-export default DetailPage
+const mapStateToProps = (state) =>{
+    return {
+      contacts: state.contacts && state.contacts.allContacts,
+    }
+  }
+export default connect(mapStateToProps)(DetailPage)

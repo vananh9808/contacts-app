@@ -11,18 +11,17 @@ const contactReducer = (state = initalState, action) => {
                 ...state,
                 allContacts:[...state.allContacts, action.payload],
             }
+        case EDIT_CONTACT:
+            return {
+                ...state,
+                allContacts:[...state.allContacts.filter(
+                    (contact) => contact.key !== action?.payload?.key), action.payload],
+            }
         case DELETE_CONTACT:
             return {
                 ...state,
                 allContacts: state.allContacts.filter(
                     (contact) => contact.key !== action.payload),
-            }
-        case EDIT_CONTACT:
-            return {
-                ...state,
-                allContacts:state.allContacts.find(
-                    (contact) => contact.key === action.payload
-                ),
             }
         default:
             return state;
