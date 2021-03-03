@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Drawer, Input, Form, Button, DatePicker } from 'antd';
-import moment from 'moment';
+import { Drawer, Input, Form, Button } from 'antd';
+
 
 const EditDrawer = ({ 
     show, 
