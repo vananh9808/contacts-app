@@ -3,43 +3,43 @@ import PropTypes from 'prop-types';
 import { Drawer, Input, Form, Button } from 'antd';
 
 
-const EditDrawer = ({ 
-    show, 
-    handleOnClose, 
-    handleOnFinish, 
+const EditDrawer = ({
+    show,
+    handleOnClose,
+    handleOnFinish,
     handleOnFinishFailed,
     initialValues,
     mode,
     handleEditOnFinish
 }) => {
     const [form] = Form.useForm();
-    return(
-        <Drawer 
+    return (
+        <Drawer
             placement="left"
             width={412}
-            title={`${mode==="edit" ? "Edit Contact" : "Add Contact" } `} 
+            title={`${mode === "edit" ? "Edit Contact" : "Add Contact"} `}
             visible={show}
-            onClose={handleOnClose} 
+            onClose={handleOnClose}
             maskClosable={true}
             destroyOnClose={true}
         >
             <Form
                 form={form}
-                initialValues = {initialValues}
-                onFinish={mode==="edit" ? handleEditOnFinish : handleOnFinish }
+                initialValues={initialValues}
+                onFinish={mode === "edit" ? handleEditOnFinish : handleOnFinish}
                 onFinishFailed={handleOnFinishFailed}
                 layout="vertical"
 
-                >
-                    <Form.Item
+            >
+                <Form.Item
                     label="Nhập tên"
                     name="fullName"
                     rules={[{ required: true, message: 'Vui lòng nhập tên!' }]}
-                    >
+                >
                     <Input />
-                    </Form.Item>
+                </Form.Item>
 
-                    {/* <Form.Item
+                {/* <Form.Item
                     label="Nhập ngày sinh"
                     name="birthDay"
                     rules={[{ required: true, message: 'Vui lòng nhập ngày tháng năm sinh!' }]}
@@ -51,32 +51,32 @@ const EditDrawer = ({
                     />
                     </Form.Item> */}
 
-                    <Form.Item
+                <Form.Item
                     label="Nhập Email"
                     name="email"
-                    rules={[{ type: "email", message: 'Vui lòng nhập đúng định dạng email!' }, { required: true, message: 'Vui lòng nhập email'}]}
-                    >
+                    rules={[{ type: "email", message: 'Vui lòng nhập đúng định dạng email!' }, { required: true, message: 'Vui lòng nhập email' }]}
+                >
                     <Input />
-                    </Form.Item>
-                    
-                    <Form.Item
+                </Form.Item>
+
+                <Form.Item
                     label="Nhập địa chỉ"
                     name="address"
                     rules={[{ required: true, message: 'Vui lòng nhập địa chỉ!' }]}
-                    >
+                >
                     <Input />
-                    </Form.Item>
+                </Form.Item>
 
-                    <Form.Item>
-                            <Fragment>
-                                <Button type="primary" htmlType="submit" style={{marginRight: "20px"}}> 
-                                 {mode==="edit"?"Edit":"Add"}
+                <Form.Item>
+                    <Fragment>
+                        <Button type="primary" htmlType="submit" style={{ marginRight: "20px" }}>
+                            {mode === "edit" ? "Edit" : "Add"}
+                        </Button>
+                        <Button htmlType="button" onClick={() => form.resetFields()}>
+                            Reset
                                 </Button>
-                                <Button htmlType="button" onClick={() => form.resetFields()}> 
-                                Reset 
-                                </Button>
-                            </Fragment>
-                    </Form.Item>
+                    </Fragment>
+                </Form.Item>
             </Form>
 
         </Drawer>
@@ -91,7 +91,7 @@ EditDrawer.propTypes = {
     handleOnFinishFailed: PropTypes.func.isRequired,
     initialValues: PropTypes.object.isRequired,
     handleEditOnFinish: PropTypes.func.isRequired,
-    mode:PropTypes.oneOf(["add","edit"])
+    mode: PropTypes.oneOf(["add", "edit"])
 };
 
 export default EditDrawer
