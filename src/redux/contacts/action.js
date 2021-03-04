@@ -1,26 +1,26 @@
 import {ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT } from "./actionTypes"
 
-export const addContact = (contact) => {
+export const addContact = (payload) => {
     return (dispatch) =>{
         dispatch({
             type: ADD_CONTACT,
-            payload: contact,
+            payload,
         })
     }
 }
-export const editContact = (contact) => {
+export const editContact = (payload) => {
     return (dispatch) =>{
         dispatch({
             type: EDIT_CONTACT,
-            payload: contact,
+            payload,
         })
     }
 }
-export const deleteContact = (key) => {
+export const deleteContact = (payload) => {
     return (dispatch) =>{
         dispatch({
             type: DELETE_CONTACT,
-            payload: key,
+            payload,
         })
     }
 }

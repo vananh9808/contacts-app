@@ -1,7 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
-import contactReducer from "./contacts/reducer";
-import thunk from 'redux-thunk';
+import contactReducer from "./contacts/reducer"
+import thunk from 'redux-thunk'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 
 
@@ -17,6 +17,6 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const store = createStore(persistedReducer, applyMiddleware(thunk))
 
-export const persistedStore = persistStore(store);
+export const persistedStore = persistStore(store)

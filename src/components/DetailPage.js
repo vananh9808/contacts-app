@@ -1,25 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
-import { Fragment } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Button } from 'antd'
+import { Fragment } from 'react'
+import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { useHistory } from "react-router-dom";
-import { Typography } from 'antd';
+import { useHistory } from "react-router-dom"
+import { Typography } from 'antd'
 const DetailPage = ({ 
     contacts 
 }) => {
-    const history = useHistory();
+    const history = useHistory()
     const { key } = useParams()
-    const [contact, setContact] = useState([]);
+    const [contact, setContact] = useState([])
+
     useEffect(() => {
         const oneContact = contacts.find(function (e) {
-            return e.key == key;
-        });
+            return e.key == key
+        })
         setContact(oneContact)
-    }, [key]);
+        console.log(a)
+    }, [key])
+
+    const a = 'abc'
+    const b = '123'
 
     return (
         <Fragment>
+            {console.log(b)}
             <div>
                 <Typography.Paragraph>{contact.stt || '---'}</Typography.Paragraph>
             </div>
@@ -38,6 +44,9 @@ const DetailPage = ({
         </Fragment>
     )
 }
+
+
+
 const mapStateToProps = (state) => {
     return {
         contacts: state.contacts && state.contacts.allContacts,

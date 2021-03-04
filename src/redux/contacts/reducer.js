@@ -28,4 +28,4 @@ const contactReducer = (state = initalState, action) => {
     }
 }
 
-export default contactReducer;
+export default contactReducer
