@@ -11,27 +11,24 @@ import type {ContactType} from '../ContactManage'
 type Props = {
     contacts: ContactType[]
 }
-
+type paramsType = {
+    key?: string
+}
 
 const DetailPage: FC<Props> = ({ contacts }) => {
-
     const history = useHistory()
-    const  key  = useParams<number>()
+    const  params  = useParams<paramsType>()
     const [contact, setContact] = useState<ContactType>(Object)
 
     useEffect(() => {
         const oneContact: any = contacts?.find(function (e) {
-            return e.key === key
+            return e.key === Number(params.key)
         })
         setContact(oneContact)
-    }, [contacts, key])
-    console.log('key value:', key)
-    console.log('key:', typeof(key))
-    console.log('one contact:',contact)
-    console.log('contact:',contacts)
+    }, [contacts, params.key])
     return (
         <Fragment>
-            {/* <div>
+            <div>
                 <Typography.Paragraph>{contact.stt || '---'}</Typography.Paragraph>
             </div>
             <div>
@@ -42,7 +39,7 @@ const DetailPage: FC<Props> = ({ contacts }) => {
             </div>
             <div>
                 <Typography.Paragraph>{contact.address || '---'}</Typography.Paragraph>
-            </div> */}
+            </div>
             <div>
                 <Button onClick={() => history.push('/')} >Quay lại</Button>
             </div>

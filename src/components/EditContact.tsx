@@ -4,7 +4,7 @@ import { Drawer, Input, Form, Button } from 'antd'
 import type {ContactType} from '../ContactManage'
 type Props = {
   show: boolean
-  handleOnClose: any
+  handleOnClose: () => void
   handleOnFinish: (data: ContactType[]) => void
   mode: 'edit' | 'add'
   handleEditOnFinish: (data: ContactType[]) => void

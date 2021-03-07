@@ -83,11 +83,6 @@ const ContactManage: FC<Props>= ({
       dataIndex: 'fullName',
       key: 'fullName',
     },
-    // {
-    //   title: 'Ngày sinh',
-    //   key: 'birthDay',  
-    //   render: text => moment(text.birthDay).format("DD-MM-YYYY"),
-    // },
     {
       title: 'Email',
       dataIndex: 'email',
